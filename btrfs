@@ -9,11 +9,13 @@ def main():
     if len(args) > 1:
         args[0] = REAL_BTRFS
         if args[1] in ['send', 'receive', 'property']:
-            subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            proc = subprocess.run(args, stdin=0, stdout=1, stderr=2)
+
             return
         elif args[1] == 'subvolume' and len(args) > 2 and args[2] in ['create', 'delete', 'show', 'snapshot', 'sync']:
-            subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            proc = subprocess.run(args, stdin=0, stdout=1, stderr=2)
             return
+
     print('You do not have permission to run this command')
 
 if __name__ == '__main__':
