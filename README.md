@@ -1,4 +1,7 @@
 # Btrfs-Backup-Chroot-Shim
+
+# NOTE: Apparently this can be all be done directly in the sudoers file, so this was pointless.
+
 A small python program that is meant to replace btrfs in chroot such that only backup related commands are allowed to be executed as root. This is only meant to be used as an indrection for /usr/bin/btrfs when you have a rule in your sudoers file that allows the btrfs program to be run as root without a password.
 
 ## Requirements
