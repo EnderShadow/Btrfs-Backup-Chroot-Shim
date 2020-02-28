@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import sys, subprocess
+
+REAL_BTRFS='/usr/bin/btrfs.real'
+
+def main():
+    args = sys.argv
+    if len(args) > 1:
+        args[0] = REAL_BTRFS
+        if args[1] in ['send', 'receive', 'property']:
+            subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            return
+        elif args[1] == 'subvolume' and len(args) > 2 and args[2] in ['create', 'delete', 'show', 'snapshot', 'sync']:
+            subprocess.run(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            return
+    print('You do not have permission to run this command')
+
+if __name__ == '__main__':
+    main()
